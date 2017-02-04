@@ -1,10 +1,14 @@
+from graphics.frame import Frame
 # Scene will keep track of the game and server
 
-class Scene():
+class Scene(Frame):
 
 	def __init__(self):
 
 		self.__entities = []
+
+		super(Scene, self).__init__(0, 0, 100, 100)
+		self.__parent = None
 
 
 	def draw(self, screen, dt):
