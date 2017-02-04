@@ -6,20 +6,25 @@ def getQuong():
 	return quong
 
 
-def toPercentX(x, frame = None):
+def toPercentX(frame, x):
 
-	if frame is None:
-		frame = quong.getScreen()
-
-	return int(x / frame.getWidth() * 100)
+	print(frame.getRect().width, x, frame.getRect().x)
+	return (x - frame.getRect().x) / frame.getRect().width * 100
 
 
-def toPercentY(y, frame = None):
+def toPercentY(frame, y):
 
-	if frame is None:
-		frame = quong.getScreen()
+	return (y - frame.getRect().y) / frame.getRect().height * 100
 
-	return int(y / frame.getHeight() * 100)
+
+def toPercentWidth(frame, width):
+
+	return width / frame.getRect().width * 100
+
+
+def toPercentHeight(frame, height):
+
+	return height / frame.getRect().height * 100
 
 
 def toPixelsX(frame, x):
