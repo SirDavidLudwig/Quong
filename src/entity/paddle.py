@@ -18,6 +18,9 @@ class Paddle(Entity):
 		self.__rect = self.__texture.get_rect()
 		self.__direction = direction
 
+		self.__x = 0
+		self.__y = 0
+
 
 	# @param
 	# dt: Delta Time
@@ -26,3 +29,36 @@ class Paddle(Entity):
 		self.__rect.left = self.getX()
 		self.__rect.top = self.getY()
 		screen.getSurface().blit(self.__texture, self.__rect)
+
+
+	def move(self, speed):
+
+		print("Moving...")
+
+		if self.__direction == Paddle.RIGHT:
+			speed *= -1
+		
+		if self.__direction == Paddle.UP or self.__direction == Paddle.DOWN:
+			self.setY(self.getY() + speed)
+		else:
+			self.setX(self.getX() + speed)
+
+
+	def getX(self):
+
+		return self.__x
+
+
+	def getY(self):
+
+		return self.__y
+
+
+	def setX(self, x):
+
+		self.__x = x
+
+
+	def setY(self, y):
+		
+		self.__y = y

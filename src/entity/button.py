@@ -5,8 +5,8 @@ import pygame
 
 class Button(Entity):
 
-	def __init__(self, width, height, text):
-		super(Button, self).__init__()
+	def __init__(self, width, height, text, parent):
+		super(Button, self).__init__(parent)
 
 		self.__width = width
 		self.__height = height

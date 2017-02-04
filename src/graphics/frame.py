@@ -46,6 +46,7 @@ class Frame():
 
 		return self.__x
 
+
 	def getY(self):
 
 		return self.__y

@@ -12,8 +12,8 @@ class MainMenu(Scene):
 
 	def initialize(self):
 
-		self.__buttonJoin = Button(50, 10, "Join")
-		self.__buttonHost = Button(50, 10, "Host")
+		self.__buttonJoin = Button(50, 10, "Join", self)
+		self.__buttonHost = Button(50, 10, "Host", self)
 
 		self.__buttonJoin.setCenterX(True)
 		self.__buttonHost.setCenterX(True)

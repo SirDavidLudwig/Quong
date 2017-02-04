@@ -2,6 +2,7 @@ from . import utils
 from . server import *
 from graphics.screen import *
 from scene.main_menu import *
+from scene.message import *
 import pygame
 import time
 
