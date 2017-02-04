@@ -1,4 +1,4 @@
-
+# Scene will keep track of the game and server
 
 class Scene():
 
