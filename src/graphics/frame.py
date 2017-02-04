@@ -19,8 +19,9 @@ class Frame():
 
 		abs_x = toPixelsX(self.__parent, self.__x)
 		abs_y = toPixelsY(self.__parent, self.__y)
-		abs_width = toPixelsX(self.__parent, self.__x+self.__width)
-		abs_height = toPixelsY(self.__parent, self.__y+self.__height)
+		abs_width = toPixelsX(self.__parent, self.__width)
+		abs_height = toPixelsY(self.__parent, self.__height)
+		print("abs_w", abs_width)
 
 		self.__rect = pygame.Rect(abs_x, abs_y, abs_width, abs_height)
 

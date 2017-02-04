@@ -5,7 +5,7 @@ import pygame
 
 class Button(Entity):
 
-	def __init__(self, width, height, text, parent):
+	def __init__(self, width, height, text, parent=None):
 		super(Button, self).__init__(parent)
 
 		self.__width = width
@@ -28,7 +28,7 @@ class Button(Entity):
 		elif event.type == pygame.MOUSEBUTTONUP:
 			if self.isHover() and self.__pressed is True:
 				for listener in self.__clickListeners:
-					listener() 
+					listener()
 
 			self.__pressed = False
 
@@ -40,8 +40,8 @@ class Button(Entity):
 
 	def isHover(self):
 
-		x = toPercentX(pygame.mouse.get_pos()[0])
-		y = toPercentY(pygame.mouse.get_pos()[1])
+		x = toPercentX(self.getParent(), pygame.mouse.get_pos()[0])
+		y = toPercentY(self.getParent(), pygame.mouse.get_pos()[1])
 
 		return x >= self.getX() and \
 		       y >= self.getY() and \
@@ -56,7 +56,7 @@ class Button(Entity):
 
 
 	def drawOutline(self, screen):
-		
+
 		x = toPixelsX(self.getParent(), self.getX())
 		y = toPixelsY(self.getParent(), self.getY())
 
@@ -72,7 +72,7 @@ class Button(Entity):
 
 		font = pygame.font.SysFont("monospace", 30)
 		label = font.render(self.__text, 1, (255, 255, 255))
-		
+
 		# Get width and height and convert to use percentage width (0-100)
 		width = label.get_rect().width / screen.getWidth() * 100
 		height = label.get_rect().height / screen.getHeight() * 100

@@ -2,7 +2,10 @@
 from controller.player_controller import *
 from core.client import *
 from . scene import *
+from core.utils import *
 from entity.paddle import Paddle
+from graphics.debug_frame import DebugFrame
+import pygame
 
 
 class Game(Scene):
@@ -13,19 +16,20 @@ class Game(Scene):
 
 	def initialize(self):
 
-		self.__paddleLeft = Paddle(Paddle.LEFT)
-		self.__paddleUp = Paddle(Paddle.UP)
-		self.__paddleRight = Paddle(Paddle.RIGHT)
-		self.__paddleDown = Paddle(Paddle.DOWN)
+		width, height = getQuong().getScreen().getRect().size
+		ratio = 100 * (height/width)
+		print("r", ratio)
 
-		self.__paddleLeftController = PlayerController(self.__paddleLeft)
+		self.__gameFrame = DebugFrame((100-ratio)/2, 0, ratio, 100)
+		print(self.__gameFrame.getRect().size)
 
-		self.addEntity(self.__paddleLeft)
-		self.addEntity(self.__paddleUp)
-		self.addEntity(self.__paddleRight)
-		self.addEntity(self.__paddleDown)
+		self.addFrame(self.__gameFrame)
+		self.addEntity(Paddle(Paddle.LEFT, self.__gameFrame))
+		self.addEntity(Paddle(Paddle.UP, self.__gameFrame))
+		self.addEntity(Paddle(Paddle.RIGHT, self.__gameFrame))
+		self.addEntity(Paddle(Paddle.DOWN, self.__gameFrame))
 
-
+	
 	def onEvent(self, event):
 
 		self.__paddleLeftController.onEvent(event)
