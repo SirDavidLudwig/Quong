@@ -2,10 +2,11 @@
 
 class Entity():
 
-	def __init__(self):
+	def __init__(self, parent=None):
 
 		self.__x = 0
 		self.__y = 0
+		self.__parent = parent
 
 
 	# @param
@@ -39,3 +40,9 @@ class Entity():
 	def setY(self, y):
 
 		self.__y = y
+
+
+	def getParent(self):
+
+		return self.__parent
+
