@@ -22,17 +22,11 @@ def toPercentY(y, frame = None):
 	return int(y / frame.getHeight() * 100)
 
 
-def toPixelsX(frame = None, x):
-
-	if frame == None:
-		frame = quong.getScreen().getScene()
+def toPixelsX(frame, x):
 
 	return int(x / 100.0 * frame.getRect().width + frame.getRect().x)
 
 
-def toPixelsY(frame = None, y):
-
-	if frame == None:
-		frame = quong.getScreen().getScene()
+def toPixelsY(frame, y):
 
 	return int(y / 100.0 * frame.getRect().height + frame.getRect().y)
