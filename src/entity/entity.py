@@ -7,6 +7,13 @@ class Entity():
 		self.__x = 0
 		self.__y = 0
 
+
+	# @param
+	# event: pygame event
+	def onEvent(self, event):
+
+		pass
+
 	# @param
 	# dt: Delta Time
 	def draw(self, dt):

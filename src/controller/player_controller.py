@@ -2,6 +2,6 @@ from . controller import *
 
 class PlayerController(Controller):
 
-	def __init__(self):
+	def __init__(self, paddle):
 
-		pass
+		super(PlayerController, self).__init__()

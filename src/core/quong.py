@@ -1,4 +1,6 @@
+from . import utils
 from graphics.screen import *
+from scene.main_menu import *
 import pygame
 import time
 
@@ -7,7 +9,15 @@ class Quong():
 
 	def __init__(self, argv):
 
-		pass
+		utils.quong = self
+
+		self.__screen = None
+		self.__done = False
+
+
+	def setScene(self, scene):
+
+		self.__screen.setScene(scene)
 
 
 	def run(self):
@@ -16,6 +26,8 @@ class Quong():
 
 		self.__screen = Screen()
 		self.__done = False
+
+		self.setScene(MainMenu())
 
 		dt = time.time()
 		
@@ -31,3 +43,8 @@ class Quong():
 			dt = time.time()
 
 		return 0
+
+
+	def getScreen(self):
+
+		return self.__screen
