@@ -57,11 +57,11 @@ class Button(Entity):
 
 	def drawOutline(self, screen):
 		
-		x = toPixelsX(self.__parent, self.getX())
-		y = toPixelsY(self.__parent, self.getY())
+		x = toPixelsX(self.getParent(), self.getX())
+		y = toPixelsY(self.getParent(), self.getY())
 
-		width = toPixelsX(self.__parent, self.__width)
-		height = toPixelsY(self.__parent, self.__height)
+		width = toPixelsX(self.getParent(), self.__width)
+		height = toPixelsY(self.getParent(), self.__height)
 
 		color = (255, 0, 0) if self.__pressed and self.isHover() else (255, 255, 255)
 
@@ -77,8 +77,8 @@ class Button(Entity):
 		width = label.get_rect().width / screen.getWidth() * 100
 		height = label.get_rect().height / screen.getHeight() * 100
 
-		x = toPixelsX(self.__parent, self.getX() + (self.__width - width) / 2)
-		y = toPixelsY(self.__parent, self.getY() + (self.__height - height) / 2)
+		x = toPixelsX(self.getParent(), self.getX() + (self.__width - width) / 2)
+		y = toPixelsY(self.getParent(), self.getY() + (self.__height - height) / 2)
 
 		screen.getSurface().blit(label, (x, y))
 

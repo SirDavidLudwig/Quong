@@ -4,11 +4,15 @@ from graphics.frame import Frame
 class Scene(Frame):
 
 	def __init__(self):
+		super(Scene, self).__init__(0, 0, 100, 100)
 
 		self.__entities = []
-
-		super(Scene, self).__init__(0, 0, 100, 100)
 		self.__parent = None
+
+
+	def initialize(self):
+
+		pass # Initialization code goes here
 
 
 	def draw(self, screen, dt):

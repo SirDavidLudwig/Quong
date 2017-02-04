@@ -8,6 +8,9 @@ class Game(Scene):
 	def __init__(self):
 		super(Game, self).__init__()
 
+
+	def initialize(self):
+
 		self.addEntity(Paddle(Paddle.LEFT))
 		self.addEntity(Paddle(Paddle.UP))
 		self.addEntity(Paddle(Paddle.RIGHT))

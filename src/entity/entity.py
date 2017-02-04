@@ -5,7 +5,8 @@ class Entity():
 
 	def __init__(self, parent=None):
 
-		if parent is None:
+
+		if parent == None:
 			parent = getQuong().getScreen().getScene()
 
 		self.__x = 0
@@ -47,6 +48,6 @@ class Entity():
 
 
 	def getParent(self):
-
+		
 		return self.__parent
 

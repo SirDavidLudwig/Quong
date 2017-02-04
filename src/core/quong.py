@@ -27,7 +27,7 @@ class Quong():
 
 		pygame.init()
 
-		self.__screen = Screen()
+		self.__screen = Screen((1024, 576))
 		self.__done = False
 
 		self.setScene(MainMenu())

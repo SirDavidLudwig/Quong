@@ -1,4 +1,5 @@
 from core.utils import *
+import pygame
 
 
 class Frame():
@@ -14,14 +15,14 @@ class Frame():
 		self.__y = y
 		self.__width = width
 		self.__height = height
+		self.__parent = parent
 
-		abs_x = toPixelsX(self.__x, self)
-		abs_y = toPixelsY(self.__y, self)
-		abs_width = toPixelsX(self.__x+self.__width, self)
-		abs_height = toPixelsY(self.__y+self.__height, self)
+		abs_x = toPixelsX(self.__parent, self.__x)
+		abs_y = toPixelsY(self.__parent, self.__y)
+		abs_width = toPixelsX(self.__parent, self.__x+self.__width)
+		abs_height = toPixelsY(self.__parent, self.__y+self.__height)
 
 		self.__rect = pygame.Rect(abs_x, abs_y, abs_width, abs_height)
-		self.__parent = parent
 
 
 	def draw(self, screen, dt):
@@ -53,6 +54,7 @@ class Frame():
 	def getWidth(self):
 
 		return self.__width
+
 
 	def getHeight(self):
 

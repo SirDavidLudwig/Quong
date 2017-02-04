@@ -9,6 +9,9 @@ class MainMenu(Scene):
 	def __init__(self):
 		super(MainMenu, self).__init__()
 
+
+	def initialize(self):
+
 		self.__buttonJoin = Button(50, 10, "Join")
 		self.__buttonHost = Button(50, 10, "Host")
 

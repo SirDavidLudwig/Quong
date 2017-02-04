@@ -7,6 +7,7 @@ class Screen():
 
 		self.__resolution = resolution
 		self.__surface = pygame.display.set_mode(resolution)
+		self.__scene = None
 
 		self.__clock = pygame.time.Clock()
 
@@ -45,6 +46,11 @@ class Screen():
 		return self.__surface
 
 
+	def getRect(self):
+
+		return self.__surface.get_rect()
+
+
 	def getSize(self):
 
 		return self.__resolution
@@ -71,3 +77,4 @@ class Screen():
 			del self.__scene
 
 		self.__scene = scene
+		self.__scene.initialize()
