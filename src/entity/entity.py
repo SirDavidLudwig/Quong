@@ -1,8 +1,12 @@
+from core.utils import *
 
 
 class Entity():
 
 	def __init__(self, parent=None):
+
+		if parent is None:
+			parent = getQuong().getScreen().getScene()
 
 		self.__x = 0
 		self.__y = 0
