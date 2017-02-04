@@ -10,6 +10,8 @@ class Screen():
 		self.__surface = pygame.display.set_mode(resolution)
 		self.__scene = MainMenu()
 
+		self.__clock = pygame.time.Clock()
+
 
 	def onEvent(self, event):
 
@@ -23,6 +25,9 @@ class Screen():
 
 		# Update the screen
 		pygame.display.flip()
+
+		# Wait for the next frame
+		self.__clock.tick(60)
 
 
 	def getSurface(self):
