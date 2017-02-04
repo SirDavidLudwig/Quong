@@ -5,12 +5,18 @@ import pygame
 
 class Paddle(Entity):
 
-	def __init__(self):
+	LEFT = 0
+	RIGHT = 1
+	UP = 2
+	DOWN = 3
+
+	def __init__(self, direction=LEFT):
 		super(Paddle, self).__init__()
 
 		base_path = os.path.dirname(os.path.realpath(__file__)) + "/"
 		self.__texture = pygame.image.load(base_path + "../../res/textures/paddle.png")
 		self.__rect = self.__texture.get_rect()
+		self.__direction = direction
 
 
 	# @param
