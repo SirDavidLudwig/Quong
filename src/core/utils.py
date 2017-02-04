@@ -2,21 +2,21 @@
 quong = None
 
 
-def toPercentX(x):
+def toPercentX(x, frame = quong.getScreen()):
 
 	return x / quong.getScreen().getWidth() * 100
 
 
-def toPercentY(y):
+def toPercentY(y, frame = quong.getScreen()):
 
 	return y / quong.getScreen().getHeight() * 100
 
 
-def toPixelsX(x):
+def toPixelsX(x, frame = quong.getScreen()):
 
 	return x / 100.0 * quong.getScreen().getWidth()
 
 
-def toPixelsY(y):
+def toPixelsY(y, frame = quong.getScreen()):
 
 	return y / 100.0 * quong.getScreen().getHeight()
