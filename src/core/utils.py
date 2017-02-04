@@ -20,3 +20,8 @@ def toPixelsX(x):
 def toPixelsY(y):
 
 	return y / 100.0 * quong.getScreen().getHeight()
+
+
+def getQuong():
+
+	return quong
