@@ -10,6 +10,6 @@ class Ball(Entity):
 
 	# @param
 	# dt: Delta Time
-	def draw(self, dt):
+	def draw(self, screen, dt):
 
 		pass
