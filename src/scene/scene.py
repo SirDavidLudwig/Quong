@@ -7,7 +7,8 @@ class Scene(Frame):
 
 		self.__entities = []
 
-		super(Scene, self).__init__(x=0, y=0, width=100, height=100)
+		super(Scene, self).__init__(0, 0, 100, 100)
+		self.__parent = None
 
 
 	def draw(self, screen, dt):

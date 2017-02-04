@@ -39,20 +39,20 @@ class Frame():
 
 	def getX(self):
 
-		return self.__rect.left
+		return self.__x
 
 	def getY(self):
 
-		return self.__rect.top
+		return self.__y
 
 
 	def getWidth(self):
 
-		return self.__rect.width
+		return self.__width
 
 	def getHeight(self):
 
-		return self.__rect.height
+		return self.__height
 
 
 	def getRect(self):
