@@ -1,3 +1,6 @@
+from graphics.screen import *
+import pygame
+import time
 
 
 class Quong():
@@ -9,7 +12,22 @@ class Quong():
 
 	def run(self):
 
-		while True:
-			continue
+		pygame.init()
+
+		self.__screen = Screen()
+		self.__done = False
+
+		dt = time.time()
+		
+		while not self.__done:
+
+			for event in pygame.event.get():
+				if event.type == pygame.QUIT:
+					self.__done = True
+				else:
+					self.__screen.onEvent(event)
+
+			self.__screen.draw(time.time() - dt)
+			dt = time.time()
 
 		return 0
