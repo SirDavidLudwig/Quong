@@ -1,4 +1,3 @@
-from scene.main_menu import *
 import pygame
 
 
@@ -8,7 +7,6 @@ class Screen():
 
 		self.__resolution = resolution
 		self.__surface = pygame.display.set_mode(resolution)
-		self.__scene = MainMenu()
 
 		self.__clock = pygame.time.Clock()
 
@@ -50,7 +48,7 @@ class Screen():
 	def getSize(self):
 
 		return self.__resolution
-		
+
 
 	def getWidth(self):
 

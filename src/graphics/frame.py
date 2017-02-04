@@ -1,10 +1,14 @@
+from core.utils import *
 
 
 class Frame():
 
-	def __init__(self, x, y, width, height, parent=getQuong().getScreen()):
+	def __init__(self, x, y, width, height, parent=None):
 
 		self.__entities = []
+
+		if parent == None:
+			parent = getQuong().getScreen()
 
 		self.__x = x
 		self.__y = y
