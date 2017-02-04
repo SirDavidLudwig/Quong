@@ -1,5 +1,7 @@
 from entity.button import *
+from core.utils import *
 from . scene import *
+from scene.game import *
 
 
 class MainMenu(Scene):
@@ -30,7 +32,7 @@ class MainMenu(Scene):
 
 	def hostGame(self):
 
-		print("You clicked the host button")
+		getQuong().getScreen().setScene(Game())
 
 
 	def draw(self, screen, dt):
