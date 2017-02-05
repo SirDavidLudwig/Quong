@@ -4,7 +4,7 @@ class Controller():
 
 	LEFT_UP  = 1
 	RIGHT_DOWN = 2
-	MAX_SPEED = 5
+	MAX_SPEED = 5000
 
 	def __init__(self, paddle):
 
