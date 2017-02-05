@@ -26,14 +26,11 @@ class Paddle(Entity):
 
 		self.initializePosition()
 
-		self.__x = 0
-		self.__y = 0
-
 
 	# @param
 	# dt: Delta Time
 	def draw(self, screen, dt):
-		print(self.getX())
+		
 		self.__rect.left = toPixelsX(self.getParent(), self.getX())
 		self.__rect.top = toPixelsY(self.getParent(), self.getY())
 		screen.getSurface().blit(self.__texture, self.__rect)
@@ -43,7 +40,7 @@ class Paddle(Entity):
 
 		if self.__direction == Paddle.RIGHT:
 			speed *= -1
-		
+
 		if self.__direction == Paddle.LEFT or self.__direction == Paddle.RIGHT:
 			self.setY(self.getY() + speed)
 		else:
@@ -66,7 +63,7 @@ class Paddle(Entity):
 
 
 	def setY(self, y):
-		
+
 		self.__y = y
 
 

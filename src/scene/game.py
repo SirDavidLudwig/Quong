@@ -22,12 +22,18 @@ class Game(Scene):
 		self.__gameFrame = DebugFrame((100-ratio)/2, 0, ratio, 100)
 
 		self.addFrame(self.__gameFrame)
-		self.addEntity(Paddle(Paddle.LEFT, self.__gameFrame))
-		self.addEntity(Paddle(Paddle.UP, self.__gameFrame))
-		self.addEntity(Paddle(Paddle.RIGHT, self.__gameFrame))
-		self.addEntity(Paddle(Paddle.DOWN, self.__gameFrame))
 
-	
+		self.__paddles = []
+		self.__paddles.append(Paddle(Paddle.LEFT, self.__gameFrame))
+		self.__paddles.append(Paddle(Paddle.UP, self.__gameFrame))
+		self.__paddles.append(Paddle(Paddle.RIGHT, self.__gameFrame))
+		self.__paddles.append(Paddle(Paddle.DOWN, self.__gameFrame))
+		for paddle in self.__paddles:
+			self.addEntity(paddle)
+
+		self.__paddleLeftController = PlayerController(self.__paddles[1])
+
+
 	def onEvent(self, event):
 
 		self.__paddleLeftController.onEvent(event)

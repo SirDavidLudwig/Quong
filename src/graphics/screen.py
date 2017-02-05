@@ -37,9 +37,6 @@ class Screen():
 		# Update the screen
 		pygame.display.flip()
 
-		# Wait for the next frame
-		self.__clock.tick(60)
-
 
 	def getSurface(self):
 
