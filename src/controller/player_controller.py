@@ -33,6 +33,6 @@ class PlayerController(Controller):
 
 		elif event.type == core.quong.SOCKET_RECIEVE:
 			if event.entity == 'paddle' and event.id == self.getPaddle().getId():
-				self.getPaddle().setX(event.x)
-				self.getPaddle().setY(event.y)
+				self.getPaddle().setX(event.pos[0])
+				self.getPaddle().setY(event.pos[1])
 				print("Setting position")

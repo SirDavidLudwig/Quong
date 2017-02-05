@@ -1,4 +1,5 @@
 from . controller import *
+import core
 
 class NetworkController(Controller):
 
@@ -8,11 +9,13 @@ class NetworkController(Controller):
 
 	def onEvent(self, event):
 
-		if event.type == core.quong.SOCKET_RECIEVE and event.id == self.getId():
-			self.setDirection(event.direction)
+		if event.type == core.quong.SOCKET_RECIEVE:
+			if event.entity == 'paddle' and event.id == self.getPaddle().getId():
+				self.getPaddle().setX(event.pos[0])
+				self.getPaddle().setY(event.pos[1])
+				print("Setting position")
 
 
 	def setDirection(self, direction):
 
-		print("Direction set to", direction)
 		super(NetworkController, self).setDirection(direction)

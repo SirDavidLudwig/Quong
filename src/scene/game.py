@@ -1,4 +1,5 @@
 # The in game scene
+from controller.network_controller import *
 from controller.player_controller import *
 from core.client import *
 from . scene import *
@@ -39,13 +40,18 @@ class Game(Scene):
 		self.__paddles[self.__id].loadTexture("../../res/textures/player_paddle.png")
 
 		self.__controllers = [None, None, None, None]
-		#for i in range()
+		for i in range(4):
+			if i == self.__id:
+				self.__controllers[i] = self.__controller
+			else:
+				self.__controllers[i] = NetworkController(self.__paddles[i])
 
 
 
 	def onEvent(self, event):
 
-		self.__controller.onEvent(event)
+		for controller in self.__controllers:
+			controller.onEvent(event)
 
 		super(Game, self).onEvent(event)
 

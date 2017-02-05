@@ -1,3 +1,4 @@
+from . utils import *
 import core.quong
 import pickle
 import pygame
@@ -112,11 +113,11 @@ class Client():
 						event = pygame.event.Event(core.quong.SOCKET_RECIEVE)
 						if data['entity'] == 'paddle':
 							event.entity = data['entity']
-							event.id = data['entity']
+							event.id = data['id']
 							event.pos = data['pos']
 							event.direction = data['direction']
-							print("Posting event")
-							pygame.event.post(event)
+							getQuong().getScreen().onEvent(event)
+							print("Event posted")
 
 			except error:
 				return
