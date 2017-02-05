@@ -18,6 +18,11 @@ class Paddle(Entity):
 		self.__texture = pygame.image.load(base_path + "../../res/textures/paddle.png")
 
 		self.__direction = direction
+
+		percentageSize = 15
+		scaleFactor = toPixelsHeight(parent, percentageSize) / self.__texture.get_rect().height
+		size = self.__texture.get_rect().size
+		self.__texture = pygame.transform.scale(self.__texture, (int(size[0]*scaleFactor), int(size[1]*scaleFactor)))
 		self.__texture = pygame.transform.rotate(self.__texture, 90*self.__direction)
 		self.__rect = self.__texture.get_rect()
 
