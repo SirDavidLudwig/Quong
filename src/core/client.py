@@ -15,6 +15,7 @@ class Client():
 
 		self.__running = False
 		self.__socket = None
+		self.__lastPing = time.time()
 
 
 	def start(self):
@@ -25,9 +26,10 @@ class Client():
 
 	def stop(self):
 
-		self.disconnect()
-		self.__socket.close()
-		del self.__socket
+		if self.__socket:
+			self.disconnect()
+			self.__socket.close()
+			del self.__socket
 
 
 	def encodePacket(self, data):
@@ -61,6 +63,9 @@ class Client():
 				event.id = packet['id']
 				pygame.event.post(event)
 
+				return True
+
+		return False
 
 
 	def disconnect(self):
@@ -71,12 +76,51 @@ class Client():
 	def run(self):
 
 		self.__socket = socket(AF_INET, SOCK_DGRAM)
+		self.__socket.setblocking(False)
+
+		self.__running = True
 
 		if self.connect():
 			while self.__running:
+				self.ping()
 				self.receive()
+				time.sleep(0.01)
 
 		self.stop()
+
+
+	def send(self, data):
+
+		self.__socket.sendto(self.encodePacket(data), (self.__ipAddress, self.__port))
+
+
+	def receive(self):
+
+		while True:
+			try:
+				data, addr = self.__socket.recvfrom(2048)
+				packet = self.decodePacket(data)
+				print(packet)
+
+				if packet['c'] == 't':
+					event = pygame.event.Event(core.quong.SOCKET_DISCONNECT)
+					event.message = "Timed out"
+					pygame.event.post(event)
+
+				elif packet['c'] == 'd':
+					event = pygame.event.Event(core.quong.SOCKET_DISCONNECT)
+					event.message = "Disconnected"
+					pygame.event.post(event)
+			except error:
+				return
+
+
+	def ping(self):
+
+		if time.time() > self.__lastPing + 1:
+			packet = {'c': 'p'}
+			self.__socket.sendto(self.encodePacket(packet), (self.__ipAddress, self.__port))
+			self.__lastPing = time.time()
 
 
 	def isRunning(self):

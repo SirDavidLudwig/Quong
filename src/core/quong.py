@@ -53,12 +53,19 @@ class Quong():
 					self.__done = True
 				elif event.type == SOCKET_CONNECT:
 					self.setScene(Game(event.id))
+				elif event.type == SOCKET_DISCONNECT:
+					self.setScreen(Message(event.message))
 				else:
 					self.__screen.onEvent(event)
 
 			self.__screen.draw(dt)
 
 			dt = self.__clock.tick(60) / 1000.0
+
+		if self.__client is not None:
+			self.__client.stop()
+
+		self.stopServer()
 
 		return 0
 
@@ -90,6 +97,11 @@ class Quong():
 	def stopServer(self):
 
 		self.__server.stop()
+
+
+	def getClient(self):
+
+		return self.__client
 
 
 	def getScreen(self):

@@ -11,8 +11,10 @@ class Paddle(Entity):
 	RIGHT = 2
 	UP = 3
 
-	def __init__(self, direction=LEFT, parent=None):
+	def __init__(self, id, direction=LEFT, parent=None):
 		super(Paddle, self).__init__(parent)
+
+		self.__id = id
 
 		base_path = os.path.dirname(os.path.realpath(__file__)) + "/"
 		self.__texture = pygame.image.load(base_path + "../../res/textures/paddle.png")
@@ -27,6 +29,27 @@ class Paddle(Entity):
 		self.__minY, self.__maxY = 0, 100
 
 		self.initializePosition()
+
+
+	def initializePosition(self):
+
+		if self.__direction == Paddle.LEFT or self.__direction == Paddle.RIGHT:
+			self.setY(50 - self.__height/2)
+			self.__minY = self.__width
+			self.__maxY = 100 - self.__width - self.__height
+		else:
+			self.setX(50 - self.__width/2)
+			self.__minX = self.__height
+			self.__maxX = 100 - self.__width - self.__height
+
+		if self.__direction == Paddle.LEFT:
+			self.setX(0)
+		elif self.__direction == Paddle.UP:
+			self.setY(0)
+		elif self.__direction == Paddle.RIGHT:
+			self.setX(100-self.__width)
+		elif self.__direction == Paddle.DOWN:
+			self.setY(100-self.__height)
 
 
 	# @param
@@ -44,6 +67,11 @@ class Paddle(Entity):
 			self.setY(self.getY() + speed)
 		else:
 			self.setX(self.getX() + speed)
+
+
+	def getId(self):
+
+		return self.__id
 
 
 	def getX(self):
@@ -74,24 +102,3 @@ class Paddle(Entity):
 			self.__y = self.__maxY
 		else:
 			self.__y = y
-
-
-	def initializePosition(self):
-
-		if self.__direction == Paddle.LEFT or self.__direction == Paddle.RIGHT:
-			self.setY(50 - self.__height/2)
-			self.__minY = self.__width
-			self.__maxY = 100 - self.__width - self.__height
-		else:
-			self.setX(50 - self.__width/2)
-			self.__minX = self.__height
-			self.__maxX = 100 - self.__width - self.__height
-
-		if self.__direction == Paddle.LEFT:
-			self.setX(0)
-		elif self.__direction == Paddle.UP:
-			self.setY(0)
-		elif self.__direction == Paddle.RIGHT:
-			self.setX(100-self.__width)
-		elif self.__direction == Paddle.DOWN:
-			self.setY(100-self.__height)

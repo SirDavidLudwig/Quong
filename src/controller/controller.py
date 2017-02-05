@@ -20,6 +20,11 @@ class Controller():
 		return self.__direction
 
 
+	def getPaddle(self):
+
+		return self.__paddle
+
+
 	def setDirection(self, direction):
 
 		self.__direction = direction

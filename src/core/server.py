@@ -40,8 +40,12 @@ class Server():
 		# Main server loop
 		while self.__running:
 
-			if self.receive():
-				self.send()
+			self.checkTimeout()
+
+			self.receive()
+
+			time.sleep(0.01)
+				
 
 		self.__socket.close()
 		del self.__socket
@@ -62,12 +66,32 @@ class Server():
 		for i in range(4):
 			if self.__clients[i] is None:
 				id = i
-				self.__clients[i] = Connection(addr)
+				self.__clients[i] = Connection(i, addr)
 				break
 
 		if id is not None:
 			packet = {'c': 'a', 'id': id}
 			self.__socket.sendto(self.encodePacket(packet), addr)
+
+
+	def getConnection(self, address):
+		for connection in self.__clients:
+			if connection is not None:
+				if address == connection.getAddress():
+					return connection
+
+		return None
+
+
+	def checkTimeout(self):
+
+		for i in range(4):
+			if self.__clients[i] is not None:
+				if time.time() > self.__clients[i].getPing() + 5:
+					addr = self.__clients[i].getAddress()
+					packet = {'c': 't'}
+					self.__socket.sendto(self.encodePacket(packet), addr)
+					self.__clients[i] = None
 
 
 	def receive(self):
@@ -76,8 +100,17 @@ class Server():
 			try:
 				data, addr = self.__socket.recvfrom(1024)
 
-				if addr not in self.__clients:
+				if self.getConnection(addr) is None:
 					self.connectClient(addr, self.decodePacket(data))
+					continue
+
+				packet = self.decodePacket(data)
+
+				packetType = packet['c']
+				if packetType == 'p':
+					self.getConnection(addr).setPing(time.time())
+				elif packetType == 'u':
+					print("Update received")
 
 			except error:
 				break

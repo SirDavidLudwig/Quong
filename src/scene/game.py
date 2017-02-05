@@ -28,10 +28,10 @@ class Game(Scene):
 		self.addFrame(self.__gameFrame)
 
 		self.__paddles = []
-		self.__paddles.append(Paddle(Paddle.LEFT, self.__gameFrame))
-		self.__paddles.append(Paddle(Paddle.UP, self.__gameFrame))
-		self.__paddles.append(Paddle(Paddle.RIGHT, self.__gameFrame))
-		self.__paddles.append(Paddle(Paddle.DOWN, self.__gameFrame))
+		self.__paddles.append(Paddle(0, Paddle.LEFT, self.__gameFrame))
+		self.__paddles.append(Paddle(1, Paddle.UP, self.__gameFrame))
+		self.__paddles.append(Paddle(2, Paddle.RIGHT, self.__gameFrame))
+		self.__paddles.append(Paddle(3, Paddle.DOWN, self.__gameFrame))
 		for paddle in self.__paddles:
 			self.addEntity(paddle)
 
