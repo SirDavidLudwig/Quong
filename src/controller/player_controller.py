@@ -35,4 +35,6 @@ class PlayerController(Controller):
 			if event.entity == 'paddle' and event.id == self.getPaddle().getId():
 				self.getPaddle().setX(event.pos[0])
 				self.getPaddle().setY(event.pos[1])
+				self.setDirection(event.direction)
+				print(event.direction)
 				print("Setting position")

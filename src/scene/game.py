@@ -58,7 +58,8 @@ class Game(Scene):
 
 	def draw(self, screen, dt):
 
-		self.__controller.tick(screen, dt)
+		for controller in self.__controllers:
+			controller.tick(screen, dt)
 
 		# Draw scene background and stuff
 
