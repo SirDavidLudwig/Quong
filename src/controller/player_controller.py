@@ -6,7 +6,7 @@ class PlayerController(Controller):
 
 	def __init__(self, paddle):
 		super(PlayerController, self).__init__(paddle)
-		
+
 
 	def onEvent(self, event):
 
@@ -21,3 +21,7 @@ class PlayerController(Controller):
 				self.setDirection(self.getDirection() & ~Controller.LEFT_UP)
 			elif event.key == pygame.K_DOWN or event.key == pygame.K_RIGHT:
 				self.setDirection(self.getDirection() & ~Controller.RIGHT_DOWN)
+
+
+	def onStateChange(self):
+		pass

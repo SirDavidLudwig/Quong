@@ -9,8 +9,6 @@ class Screen():
 		self.__surface = pygame.display.set_mode(resolution)
 		self.__scene = None
 
-		self.__clock = pygame.time.Clock()
-
 
 	def toPixelsX(self, x):
 

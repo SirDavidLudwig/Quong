@@ -1,4 +1,5 @@
 from . import utils
+from . client import *
 from . server import *
 from graphics.screen import *
 from scene.main_menu import *
@@ -13,6 +14,7 @@ class Quong():
 
 		utils.quong = self
 
+		self.__client = None
 		self.__server = Server(None)
 
 		self.__screen = None
@@ -52,11 +54,25 @@ class Quong():
 		return 0
 
 
+	def connect(self, ipAddress, port):
+
+		if self.__client is not None:
+			raise Exception("Client connection already established")
+			
+		self.setScene(Message("Connecting..."))
+
+		self.__client = Client(ipAddress, port)
+		self.__client.start()
+
+
 	def startServer(self, port = 4657):
+
+		self.setScene(Message("Creating game..."))
 
 		if not self.__server.isRunning():
 			self.__server.setPort(port)
 			self.__server.start()
+			self.connect('127.0.0.1', port)
 
 		else:
 			raise Exception("ERROR: Server is already running!")

@@ -1,4 +1,7 @@
+import pickle
 from socket import *
+from threading import Thread
+import time
 
 
 class Client():
@@ -25,10 +28,45 @@ class Client():
 		del self.__socket
 
 
+	def encodePacket(self, data):
+		return pickle.dumps(data)
+
+	
+	def decodePacket(self, data):
+
+		return pickle.loads(data)
+
+
+	def connect(self):
+
+		packet = {'c': 'c'}
+
+		if self.__socket.sendto(self.encodePacket(packet), (self.__ipAddress, self.__port)):
+
+			t = time.time() + 5
+			while t > time.time():
+				try:
+					data, addr = self.__socket.recvfrom(2048)
+					break
+				except error:
+					continue
+
+			print("Received")
+
+			packet = self.decodePacket(data)
+			if 'c' in packet and packet['c'] == 'a':
+				pass # Send the event through
+
+
+
+	def disconnect(self):
+
+		pass
+
+
 	def run(self):
 
 		self.__socket = socket(AF_INET, SOCK_DGRAM)
-		self.__socket.connect((self.__ipAddress, self.__port))
 
 		if self.connect():
 			while self.__running:

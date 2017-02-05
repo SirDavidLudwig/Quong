@@ -1,3 +1,5 @@
+from . connection import *
+import pickle
 from socket import *
 from threading import Thread
 
@@ -14,6 +16,7 @@ class Server():
 
 	def start(self):
 
+		self.__clients = [None, None, None, None]
 		self.__thread = Thread(target=self.run)
 		self.__thread.start()
 
@@ -36,8 +39,6 @@ class Server():
 
 		# Main server loop
 		while self.__running:
-			
-			self.connectClients()
 
 			if self.receive():
 				self.send()
@@ -46,24 +47,52 @@ class Server():
 		del self.__socket
 
 
-	def connectClients():
+	def encodePacket(self, data):
+		return pickle.dumps(data)
 
-		pass
+
+	def decodePacket(self, packet):
+		return pickle.loads(packet)
+
+
+	def connectClient(self, addr, packet):
+		
+		id = None
+
+		for i in range(4):
+			if self.__clients[i] is None:
+				id = i
+				self.__clients[i] = Connection(addr)
+				break
+
+		if id is not None:
+			packet = {'c': 'a', 'id': id}
+			self.__socket.sendto(self.encodePacket(packet), addr)
 
 
 	def receive(self):
+
+		while True:
+			try:
+				data, addr = self.__socket.recvfrom(1024)
+
+				if addr not in self.__clients:
+					self.connectClient(addr, self.decodePacket(data))
+
+			except error:
+				break
 
 		return False
 
 
 	def send(self):
 
-		pass
+		pass  
 
 
 	def isRunning(self):
 
-		return self.__isRunning
+		return self.__running
 
 
 	def getPort(self):

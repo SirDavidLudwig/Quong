@@ -10,6 +10,7 @@ class Controller():
 
 		self.__paddle = paddle
 		self.__direction = 0
+		self.__speed = 0
 
 		self.__lastDt = 0
 
@@ -25,8 +26,6 @@ class Controller():
 
 
 	def tick(self, screen, dt):
-
-		self.__lastDt = dt
 
 		self.__speed = 0
 
