@@ -20,7 +20,7 @@ class Ball(Entity):
 
 	def draw(self, screen, dt):
 
-		self.setX(self.getX() + self.__speed)
+		self.setX(self.getX() + self.__speed * dt)
 		self.__rect.left = self.getX ()
 		self.__rect.top = self.getY()
 		screen.getSurface().blit(self.__texture, self.__rect)
