@@ -1,6 +1,7 @@
-from . import utils
+from . game_server import *
 from . client import *
 from . server import *
+from . import utils
 from graphics.screen import *
 from scene.game import *
 from scene.main_menu import *
@@ -58,6 +59,9 @@ class Quong():
 				else:
 					self.__screen.onEvent(event)
 
+			if self.__server.isRunning():
+				self.__gameServer.tick(self.__screen, dt)
+
 			self.__screen.draw(dt)
 
 			dt = self.__clock.tick(60) / 1000.0
@@ -86,6 +90,9 @@ class Quong():
 		self.setScene(Message("Creating game..."))
 
 		if not self.__server.isRunning():
+			self.__gameServer = GameServer()
+			self.__gameServer.initialize()
+			self.__server.setGameServer(self.__gameServer)
 			self.__server.setPort(port)
 			self.__server.start()
 			self.connect('127.0.0.1', port)

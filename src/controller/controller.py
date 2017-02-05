@@ -20,6 +20,11 @@ class Controller():
 		return self.__direction
 
 
+	def getId(self):
+
+		return self.__paddle.getId()
+
+
 	def getPaddle(self):
 
 		return self.__paddle

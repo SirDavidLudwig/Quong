@@ -37,6 +37,9 @@ class Game(Scene):
 
 		self.__controller = PlayerController(self.__paddles[self.__id])
 
+		self.__controllers = [None, None, None, None]
+		for i in range()
+
 		self.addEntity(Ball(0.3, self.__gameFrame))
 		ball1 = Ball(-0.6, self.__gameFrame)
 		ball1.setX(100)

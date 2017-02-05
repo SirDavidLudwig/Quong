@@ -51,19 +51,15 @@ class Client():
 			while t > time.time():
 				try:
 					data, addr = self.__socket.recvfrom(2048)
-					break
+					packet = self.decodePacket(data)
+					if 'c' in packet and packet['c'] == 'a':
+						event = pygame.event.Event(core.quong.SOCKET_CONNECT)
+						event.id = packet['id']
+						pygame.event.post(event)
+
+						return True
 				except error:
 					continue
-
-			print("Received")
-
-			packet = self.decodePacket(data)
-			if 'c' in packet and packet['c'] == 'a':
-				event = pygame.event.Event(core.quong.SOCKET_CONNECT)
-				event.id = packet['id']
-				pygame.event.post(event)
-
-				return True
 
 		return False
 
@@ -100,7 +96,6 @@ class Client():
 			try:
 				data, addr = self.__socket.recvfrom(2048)
 				packet = self.decodePacket(data)
-				print(packet)
 
 				if packet['c'] == 't':
 					event = pygame.event.Event(core.quong.SOCKET_DISCONNECT)
@@ -111,6 +106,18 @@ class Client():
 					event = pygame.event.Event(core.quong.SOCKET_DISCONNECT)
 					event.message = "Disconnected"
 					pygame.event.post(event)
+
+				elif packet['c'] == 'u':
+					for data in packet['d']:
+						event = pygame.event.Event(core.quong.SOCKET_RECIEVE)
+						if data['entity'] == 'paddle':
+							event.entity = data['entity']
+							event.id = data['entity']
+							event.pos = data['pos']
+							event.direction = data['direction']
+							print("Posting event")
+							pygame.event.post(event)
+
 			except error:
 				return
 

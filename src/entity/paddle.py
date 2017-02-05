@@ -79,6 +79,11 @@ class Paddle(Entity):
 		return self.__id
 
 
+	def getPosition(self):
+
+		return (self.getX(), self.getY())
+
+
 	def getX(self):
 
 		return self.__x
