@@ -36,18 +36,11 @@ class Game(Scene):
 			self.addEntity(paddle)
 
 		self.__controller = PlayerController(self.__paddles[self.__id])
+		self.__paddles[self.__id].loadTexture("../../res/textures/player_paddle.png")
 
 		self.__controllers = [None, None, None, None]
-		for i in range()
+		#for i in range()
 
-		self.addEntity(Ball(0.3, self.__gameFrame))
-		ball1 = Ball(-0.6, self.__gameFrame)
-		ball1.setX(100)
-		ball2 = Ball(-1, self.__gameFrame)
-		ball2.setY(self.getY() + 100)
-		ball3 = Ball(1, self.__gameFrame)
-		ball3.setY(self.getY() + 0)
-		self.addEntity(ball1)
 
 
 	def onEvent(self, event):

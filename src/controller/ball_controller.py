@@ -57,4 +57,3 @@ class BallController:
 	def setY(self):
 
 		self.__y = y
-
