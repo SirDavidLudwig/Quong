@@ -4,20 +4,21 @@ class BallController:
 
 	MAX_SPEED = 200
 
-	def __init__(self, ball):
+	def __init__(self, ball, id):
 
 		self.__ball = ball
 		self.__unitVec = (-1.0, 0.0)
 		self.__speed = 40
-		self.__x, self.__y = 30, 50
+		self.__x, self.__y = 50, 50
+		self.__id = id
 
 
 	def onEvent(self, event):
 
-		if event.type == core.quong.SOCKET_RECIEVE and event.ball.updated:
-			self.setX(event.ball.x)
-			self.setY(event.ball.y)
-			self.setVelocity(event.ball.velocity)
+		if event.type == core.quong.SOCKET_RECIEVE and event.entity == "ball" and event.id == self.__id:
+			self.setX(event.x)
+			self.setY(event.y)
+			self.setVelocity(event.velocity)
 
 
 	def getUnitVec(self):

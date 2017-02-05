@@ -9,5 +9,5 @@ class NetworkController(Controller):
 
 	def onEvent(self, event):
 
-		if event.type == core.quong.SOCKET_RECIEVE:
-			self.setDirection(event.paddle[id].direction)
+		if event.type == core.quong.SOCKET_RECIEVE and event.id == self.__id:
+			self.setDirection(event.direction)

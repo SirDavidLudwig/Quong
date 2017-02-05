@@ -10,6 +10,7 @@ class Controller():
 
 		self.__paddle = paddle
 		self.__direction = 0
+		self.__speed = 0
 
 		self.__lastDt = 0
 
@@ -19,15 +20,18 @@ class Controller():
 		return self.__direction
 
 
+	def getPaddle(self):
+
+		return self.__paddle
+
+
 	def setDirection(self, direction):
 
 		self.__direction = direction
 
 
 	def tick(self, screen, dt):
-
-		self.__lastDt = dt
-
+		
 		self.__speed = 0
 
 		if self.__direction & Controller.LEFT_UP:

@@ -2,6 +2,7 @@ from entity.button import *
 from core.utils import *
 from . scene import *
 from scene.game import *
+from scene.message import *
 
 
 class MainMenu(Scene):
@@ -30,12 +31,12 @@ class MainMenu(Scene):
 
 	def joinGame(self):
 
-		print("You clicked the join button")
+		getQuong().connect('127.0.0.1', 4657)
 
 
 	def hostGame(self):
 
-		getQuong().getScreen().setScene(Game())
+		getQuong().startServer()
 
 
 	def draw(self, screen, dt):
