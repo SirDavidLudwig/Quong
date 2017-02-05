@@ -40,9 +40,6 @@ class Paddle(Entity):
 
 	def move(self, speed):
 
-		if self.__direction == Paddle.RIGHT:
-			speed *= -1
-
 		if self.__direction == Paddle.LEFT or self.__direction == Paddle.RIGHT:
 			self.setY(self.getY() + speed)
 		else:
