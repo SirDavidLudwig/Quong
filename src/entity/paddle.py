@@ -82,11 +82,11 @@ class Paddle(Entity):
 	def initializePosition(self):
 
 		if self.__direction == Paddle.LEFT or self.__direction == Paddle.RIGHT:
-			self.setY(self.__width)
+			self.setY(50 - self.__height/2)
 			self.__minY = self.__width
 			self.__maxY = 100 - self.__width - self.__height
 		else:
-			self.setX(self.__height)
+			self.setX(50 - self.__width/2)
 			self.__minX = self.__height
 			self.__maxX = 100 - self.__width - self.__height
 
