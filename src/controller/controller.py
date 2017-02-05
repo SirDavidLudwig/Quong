@@ -26,7 +26,7 @@ class Controller():
 
 
 	def tick(self, screen, dt):
-
+		
 		self.__speed = 0
 
 		if self.__direction & Controller.LEFT_UP:

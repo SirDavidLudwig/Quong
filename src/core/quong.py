@@ -2,6 +2,7 @@ from . import utils
 from . client import *
 from . server import *
 from graphics.screen import *
+from scene.game import *
 from scene.main_menu import *
 from scene.message import *
 import pygame
@@ -50,6 +51,8 @@ class Quong():
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					self.__done = True
+				elif event.type == SOCKET_CONNECT:
+					self.setScene(Game(event.id))
 				else:
 					self.__screen.onEvent(event)
 

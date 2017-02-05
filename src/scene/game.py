@@ -15,6 +15,8 @@ class Game(Scene):
 	def __init__(self, playerId = 0):
 		super(Game, self).__init__()
 
+		self.__id = playerId
+
 
 	def initialize(self):
 
@@ -33,7 +35,7 @@ class Game(Scene):
 		for paddle in self.__paddles:
 			self.addEntity(paddle)
 
-		self.__paddleLeftController = PlayerController(self.__paddles[1])
+		self.__controller = PlayerController(self.__paddles[self.__id])
 
 		self.addEntity(Ball(0.3, self.__gameFrame))
 		ball1 = Ball(-0.6, self.__gameFrame)
@@ -47,17 +49,14 @@ class Game(Scene):
 
 	def onEvent(self, event):
 
-		self.__paddleLeftController.onEvent(event)
-
-		if event.type == core.quong.SOCKET_CONNECT:
-			self.__id = event.id
+		self.__controller.onEvent(event)
 
 		super(Game, self).onEvent(event)
 
 
 	def draw(self, screen, dt):
 
-		self.__paddleLeftController.tick(screen, dt)
+		self.__controller.tick(screen, dt)
 
 		# Draw scene background and stuff
 

@@ -1,4 +1,6 @@
+import core.quong
 import pickle
+import pygame
 from socket import *
 from threading import Thread
 import time
@@ -55,7 +57,9 @@ class Client():
 
 			packet = self.decodePacket(data)
 			if 'c' in packet and packet['c'] == 'a':
-				pass # Send the event through
+				event = pygame.event.Event(core.quong.SOCKET_CONNECT)
+				event.id = packet['id']
+				pygame.event.post(event)
 
 
 
