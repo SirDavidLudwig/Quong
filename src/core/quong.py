@@ -6,6 +6,12 @@ from scene.message import *
 import pygame
 import time
 
+# Custom event type.
+
+SOCKET_EVENT = 0xF0
+SOCKET_DISCONNECT = 0xF1
+SOCKET_CONNECT = 0xF2
+SOCKET_RECIEVE = 0xF3
 
 class Quong():
 
@@ -46,7 +52,7 @@ class Quong():
 					self.__screen.onEvent(event)
 
 			self.__screen.draw(dt)
-			
+
 			dt = self.__clock.tick(60) / 1000.0
 
 		return 0
