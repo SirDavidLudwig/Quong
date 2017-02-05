@@ -36,6 +36,7 @@ class Game(Scene):
 			self.addEntity(paddle)
 
 		self.__controller = PlayerController(self.__paddles[self.__id])
+		self.__paddles[self.__id].loadTexture("../../res/textures/player_paddle.png")
 
 		self.addEntity(Ball(100, self.__gameFrame))
 		ball1 = Ball(-100, self.__gameFrame)

@@ -16,16 +16,9 @@ class Paddle(Entity):
 
 		self.__id = id
 
-		base_path = os.path.dirname(os.path.realpath(__file__)) + "/"
-		self.__texture = pygame.image.load(base_path + "../../res/textures/paddle.png")
-
 		self.__direction = direction
 
-		percentageSize = 15
-		scaleFactor = toPixelsHeight(parent, percentageSize) / self.__texture.get_rect().height
-		size = self.__texture.get_rect().size
-		self.__texture = pygame.transform.scale(self.__texture, (int(size[0]*scaleFactor), int(size[1]*scaleFactor)))
-		self.__texture = pygame.transform.rotate(self.__texture, 90*self.__direction)
+		self.loadTexture("../../res/textures/paddle.png")
 		self.__rect = self.__texture.get_rect()
 
 		self.__width = toPercentWidth(self.getParent(), self.__rect.width)
@@ -72,6 +65,17 @@ class Paddle(Entity):
 			self.setY(self.getY() + speed)
 		else:
 			self.setX(self.getX() + speed)
+
+
+	def loadTexture(self, textureFile):
+		base_path = os.path.dirname(os.path.realpath(__file__)) + "/"
+		self.__texture = pygame.image.load(base_path + textureFile)
+
+		percentageSize = 15
+		scaleFactor = toPixelsHeight(self.getParent(), percentageSize) / self.__texture.get_rect().height
+		size = self.__texture.get_rect().size
+		self.__texture = pygame.transform.scale(self.__texture, (int(size[0]*scaleFactor), int(size[1]*scaleFactor)))
+		self.__texture = pygame.transform.rotate(self.__texture, 90*self.__direction)
 
 
 	def getId(self):
