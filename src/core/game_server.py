@@ -25,6 +25,9 @@ class GameServer(Scene):
 
 		self.addFrame(self.__gameFrame)
 
+		self.__balls = {}
+		self.__ball_id = 1
+
 		self.__paddles = []
 		self.__paddles.append(Paddle(0, Paddle.LEFT, self.__gameFrame))
 		self.__paddles.append(Paddle(1, Paddle.UP, self.__gameFrame))
@@ -44,6 +47,17 @@ class GameServer(Scene):
 			controller.onEvent(event)
 
 		super(Game, self).onEvent(event)
+
+
+	def addBall(self, ball):
+
+		self.__balls[self.__id] = ball
+		self.addEntity(ball)
+
+
+	def removeBall(self, id):
+
+		del self.__balls[id]
 
 
 	def getController(self, id):

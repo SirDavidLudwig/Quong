@@ -46,6 +46,8 @@ class Game(Scene):
 			else:
 				self.__controllers[i] = NetworkController(self.__paddles[i])
 
+		self.__ball = Ball(self.__gameFrame)
+		self.addEntity(self.__ball)
 
 
 	def onEvent(self, event):
