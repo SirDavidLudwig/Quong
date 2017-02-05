@@ -30,16 +30,13 @@ class Paddle(Entity):
 	# @param
 	# dt: Delta Time
 	def draw(self, screen, dt):
-
+		
 		self.__rect.left = toPixelsX(self.getParent(), self.getX())
 		self.__rect.top = toPixelsY(self.getParent(), self.getY())
 		screen.getSurface().blit(self.__texture, self.__rect)
 
 
 	def move(self, speed):
-
-		print("Moving...")
-		print("x={:f}".format(self.getX()))
 
 		if self.__direction == Paddle.RIGHT:
 			speed *= -1

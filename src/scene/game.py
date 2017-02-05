@@ -21,7 +21,6 @@ class Game(Scene):
 		ratio = 100 * (height/width)
 
 		self.__gameFrame = DebugFrame((100-ratio)/2, 0, ratio, 100)
-		print(self.__gameFrame.getRect().size)
 
 		self.addFrame(self.__gameFrame)
 

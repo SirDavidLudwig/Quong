@@ -18,6 +18,8 @@ class Quong():
 		self.__screen = None
 		self.__done = False
 
+		self.__clock = pygame.time.Clock()
+
 
 	def setScene(self, scene):
 
@@ -33,8 +35,8 @@ class Quong():
 
 		self.setScene(MainMenu())
 
-		dt = time.time()
-		
+		dt = 0
+
 		while not self.__done:
 
 			for event in pygame.event.get():
@@ -43,8 +45,9 @@ class Quong():
 				else:
 					self.__screen.onEvent(event)
 
-			self.__screen.draw(time.time() - dt)
-			dt = time.time()
+			self.__screen.draw(dt)
+			
+			dt = self.__clock.tick(60) / 1000.0
 
 		return 0
 
