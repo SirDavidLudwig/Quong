@@ -35,3 +35,14 @@ def toPixelsX(frame, x):
 def toPixelsY(frame, y):
 
 	return int(y / 100.0 * frame.getRect().height + frame.getRect().y)
+
+
+def toPixelsWidth(frame, width):
+
+	return int(width / 100.0 * frame.getRect().width)
+
+
+def toPixelsHeight(frame, height):
+
+	return int(height / 100.0 * frame.getRect().height)
+
