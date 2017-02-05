@@ -23,6 +23,8 @@ class Paddle(Entity):
 
 		self.__width = toPercentWidth(self.getParent(), self.__rect.width)
 		self.__height = toPercentHeight(self.getParent(), self.__rect.height)
+		self.__minX, self.__maxX = 0, 100
+		self.__minY, self.__maxY = 0, 100
 
 		self.initializePosition()
 
@@ -30,16 +32,13 @@ class Paddle(Entity):
 	# @param
 	# dt: Delta Time
 	def draw(self, screen, dt):
-		
+
 		self.__rect.left = toPixelsX(self.getParent(), self.getX())
 		self.__rect.top = toPixelsY(self.getParent(), self.getY())
 		screen.getSurface().blit(self.__texture, self.__rect)
 
 
 	def move(self, speed):
-
-		if self.__direction == Paddle.RIGHT:
-			speed *= -1
 
 		if self.__direction == Paddle.LEFT or self.__direction == Paddle.RIGHT:
 			self.setY(self.getY() + speed)
@@ -59,20 +58,34 @@ class Paddle(Entity):
 
 	def setX(self, x):
 
-		self.__x = x
+		if x < self.__minX:
+			self.__x = self.__minX
+		elif x > self.__maxX:
+			self.__x = self.__maxX
+		else:
+			self.__x = x
 
 
 	def setY(self, y):
 
-		self.__y = y
+		if y < self.__minY:
+			self.__y = self.__minY
+		elif y > self.__maxY:
+			self.__y = self.__maxY
+		else:
+			self.__y = y
 
 
 	def initializePosition(self):
 
 		if self.__direction == Paddle.LEFT or self.__direction == Paddle.RIGHT:
-			self.setY(self.__width)
+			self.setY(50 - self.__height/2)
+			self.__minY = self.__width
+			self.__maxY = 100 - self.__width - self.__height
 		else:
-			self.setX(self.__height)
+			self.setX(50 - self.__width/2)
+			self.__minX = self.__height
+			self.__maxX = 100 - self.__width - self.__height
 
 		if self.__direction == Paddle.LEFT:
 			self.setX(0)
