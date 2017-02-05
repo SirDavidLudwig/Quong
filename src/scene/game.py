@@ -35,12 +35,12 @@ class Game(Scene):
 
 		self.__paddleLeftController = PlayerController(self.__paddles[1])
 
-		self.addEntity(Ball(0.3, self.__gameFrame))
-		ball1 = Ball(-0.6, self.__gameFrame)
-		ball1.setX(100)
-		ball2 = Ball(-1, self.__gameFrame)
+		self.addEntity(Ball(100, self.__gameFrame))
+		ball1 = Ball(-100, self.__gameFrame)
+		ball1.setX(0)
+		ball2 = Ball(-100, self.__gameFrame)
 		ball2.setY(self.getY() + 100)
-		ball3 = Ball(1, self.__gameFrame)
+		ball3 = Ball(100, self.__gameFrame)
 		ball3.setY(self.getY() + 0)
 		self.addEntity(ball1)
 

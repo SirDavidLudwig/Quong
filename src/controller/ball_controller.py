@@ -9,7 +9,7 @@ class BallController:
 		self.__ball = ball
 		self.__unitVec = (-1.0, 0.0)
 		self.__speed = 40
-		self.__x, self.__y = 50, 50
+		self.__x, self.__y = 30, 50
 
 
 	def onEvent(self, event):
@@ -56,4 +56,3 @@ class BallController:
 	def setY(self):
 
 		self.__y = y
-
