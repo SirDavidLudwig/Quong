@@ -24,7 +24,12 @@ class Controller():
 
 	def tick(self, screen, dt):
 
-		speed = int(self.__direction & Controller.LEFT_UP) * -Controller.MAX_SPEED
-		speed += int(self.__direction & Controller.RIGHT_DOWN) * Controller.MAX_SPEED
+		self.__speed = 0
+
+		if self.__direction & Controller.LEFT_UP:
+			speed += -Controller.MAX_SPEED
+
+		if self.__direction & Controller.RIGHT_DOWN:
+			speed += Controller.MAX_SPEED
 
 		self.__paddle.move(speed * dt)

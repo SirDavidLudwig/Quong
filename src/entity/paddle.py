@@ -21,16 +21,10 @@ class Paddle(Entity):
 		self.__texture = pygame.transform.rotate(self.__texture, 90*self.__direction)
 		self.__rect = self.__texture.get_rect()
 
-		print("Rect width =", self.__rect.width)
-
 		self.__width = toPercentWidth(self.getParent(), self.__rect.width)
 		self.__height = toPercentHeight(self.getParent(), self.__rect.height)
 
-		print("% w h =", self.__width, self.__height)
-
 		self.initializePosition()
-
-		print("x y =", self.getX(), self.getY())
 
 		self.__x = 0
 		self.__y = 0
@@ -39,7 +33,7 @@ class Paddle(Entity):
 	# @param
 	# dt: Delta Time
 	def draw(self, screen, dt):
-
+		print(self.getX())
 		self.__rect.left = toPixelsX(self.getParent(), self.getX())
 		self.__rect.top = toPixelsY(self.getParent(), self.getY())
 		screen.getSurface().blit(self.__texture, self.__rect)
@@ -47,12 +41,10 @@ class Paddle(Entity):
 
 	def move(self, speed):
 
-		print("Moving...")
-
 		if self.__direction == Paddle.RIGHT:
 			speed *= -1
 		
-		if self.__direction == Paddle.UP or self.__direction == Paddle.DOWN:
+		if self.__direction == Paddle.LEFT or self.__direction == Paddle.RIGHT:
 			self.setY(self.getY() + speed)
 		else:
 			self.setX(self.getX() + speed)
