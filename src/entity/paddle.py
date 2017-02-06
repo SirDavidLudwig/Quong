@@ -116,3 +116,8 @@ class Paddle(Entity):
 			self.__y = self.__maxY
 		else:
 			self.__y = y
+
+
+	def getRect(self):
+
+		return self.__rect

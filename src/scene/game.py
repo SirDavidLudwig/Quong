@@ -67,3 +67,11 @@ class Game(Scene):
 
 		# Draw entities last
 		super(Game, self).draw(screen, dt)
+
+	def getPaddles(self):
+
+		return self.__paddles
+
+	def getPaddle(self, id):
+
+		return self.__paddles[id]

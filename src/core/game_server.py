@@ -70,6 +70,11 @@ class GameServer(Scene):
 		return self.__paddles[id]
 
 
+	def getPaddles(self):
+
+		return self.__paddles
+
+
 	def setController(self, controller):
 
 		c = self.__controllers[controller.getId()]
